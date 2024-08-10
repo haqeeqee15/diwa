@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hp/landing.dart';
+import 'package:pomodoro/landing.dart';
 import 'package:window_manager/window_manager.dart';
 import 'dart:io';
 
@@ -16,7 +16,6 @@ void main() {
   }
 }
 
-
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
@@ -27,14 +26,14 @@ class MyApp extends StatelessWidget {
       home: Builder(
         builder: (BuildContext context) {
           final mediaQueryData = MediaQuery.of(context);
-          final screenWidth = 250.0;
-          final screenHeight = 400.0;
+          const screenWidth = 250.0;
+          const screenHeight = 400.0;
           return MediaQuery(
             data: mediaQueryData.copyWith(
-              size: Size(screenWidth, screenHeight),
+              size: const Size(screenWidth, screenHeight),
               devicePixelRatio: mediaQueryData.devicePixelRatio,
             ),
-            child: Container(
+            child: SizedBox(
               width: screenWidth,
               height: screenHeight,
               child: LandingPage(),

@@ -8,13 +8,16 @@ class MyTimer extends StatefulWidget {
   final String workTime;
   final String workSessions;
 
-
-  const MyTimer({Key? key, required this.breakTime, required this.workTime, required this.workSessions}) : super(key: key);
+  const MyTimer(
+      {Key? key,
+      required this.breakTime,
+      required this.workTime,
+      required this.workSessions})
+      : super(key: key);
 
   @override
   _TimerState createState() => _TimerState();
 }
-
 
 class _TimerState extends State<MyTimer> {
   bool _isRunning = false;
@@ -29,10 +32,10 @@ class _TimerState extends State<MyTimer> {
   SharedPreferences? _prefs;
 
   @override
-  void initState(){
+  void initState() {
     super.initState();
     try {
-      if(widget.breakTime == '0'){
+      if (widget.breakTime == '0') {
         throw Exception('Break time cannot be 0');
       }
       _timeInt = int.parse(widget.workTime);
@@ -56,15 +59,35 @@ class _TimerState extends State<MyTimer> {
               children: [
                 Row(
                   children: const [
-                    Icon(Icons.close, size: 30,),
+                    Icon(
+                      Icons.close,
+                      size: 30,
+                    ),
                     SizedBox(width: 20),
-                    Text('Invalid input!', style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 20, fontFamily: 'Arial',),),
+                    Text(
+                      'Invalid input!',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20,
+                        fontFamily: 'Ubuntu',
+                      ),
+                    ),
                   ],
                 ),
                 Row(
                   children: const [
-                    SizedBox(width: 50), // Add some horizontal spacing to align the text with the first message
-                    Text("Please enter valid numbers to start.", style: TextStyle(color: Colors.black, fontSize: 14, fontFamily: 'Arial',),),
+                    SizedBox(
+                        width:
+                            50), // Add some horizontal spacing to align the text with the first message
+                    Text(
+                      "Please enter valid numbers to start.",
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 14,
+                        fontFamily: 'Ubuntu',
+                      ),
+                    ),
                   ],
                 ),
               ],
@@ -87,7 +110,8 @@ class _TimerState extends State<MyTimer> {
     var now = new DateTime.now();
     DateTime date = DateTime(now.year, now.month, now.day);
     String formattedDate = "${date.day}-${date.month}-${date.year}";
-    await _prefs!.setString('time', '$curr / ${_sessionCount * _timeInt} $formattedDate');
+    await _prefs!.setString(
+        'time', '$curr / ${_sessionCount * _timeInt} $formattedDate');
   }
 
   Future<void> _resetTime() async {
@@ -105,8 +129,7 @@ class _TimerState extends State<MyTimer> {
       setState(() {
         _time = _time - const Duration(seconds: 1);
         if (_time.inSeconds <= 0) {
-
-          if(_timerCount % 2 == 1) {
+          if (_timerCount % 2 == 1) {
             _time = Duration(minutes: _timeInt);
             _currMax = _timeInt;
             _timerCount++;
@@ -127,15 +150,35 @@ class _TimerState extends State<MyTimer> {
                     children: [
                       Row(
                         children: const [
-                          Icon(Icons.check_circle_outline, size: 30,),
+                          Icon(
+                            Icons.check_circle_outline,
+                            size: 30,
+                          ),
                           SizedBox(width: 20),
-                          Text('Session Completed!', style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 20, fontFamily: 'Arial',),),
+                          Text(
+                            'Session Completed!',
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20,
+                              fontFamily: 'Ubuntu',
+                            ),
+                          ),
                         ],
                       ),
                       Row(
                         children: [
-                          const SizedBox(width: 50), // Add some horizontal spacing to align the text with the first message
-                          Text('You logged ${_sessionCount * _timeInt} minutes.', style: TextStyle(color: Colors.black, fontSize: 14, fontFamily: 'Arial',),),
+                          const SizedBox(
+                              width:
+                                  50), // Add some horizontal spacing to align the text with the first message
+                          Text(
+                            'You logged ${_sessionCount * _timeInt} minutes.',
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 14,
+                              fontFamily: 'Ubuntu',
+                            ),
+                          ),
                         ],
                       ),
                     ],
@@ -147,7 +190,6 @@ class _TimerState extends State<MyTimer> {
             _storeTime();
             Navigator.pop(context);
           }
-
 
           _stopTimer();
           _isRunning = false;
@@ -166,7 +208,7 @@ class _TimerState extends State<MyTimer> {
         _stopTimer();
       }
       _time = const Duration(minutes: 60);
-      if(_timerCount % 2 == 1) {
+      if (_timerCount % 2 == 1) {
         _time = Duration(minutes: _break.inMinutes);
       } else {
         _time = Duration(minutes: _timeInt);
@@ -189,21 +231,22 @@ class _TimerState extends State<MyTimer> {
         centerTitle: false,
         backgroundColor: Colors.black,
         title: Text.rich(
-              TextSpan(
-                text: 'Session', // text for title
-                style: TextStyle(
-                  fontSize: 24,
-                  color: Colors.greenAccent,
-                  fontFamily: 'Arial',
-                ),
-              ),
+          TextSpan(
+            text: 'Session', // text for title
+            style: TextStyle(
+              fontSize: 24,
+              color: Colors.greenAccent,
+              fontFamily: 'Ubuntu',
             ),
+          ),
+        ),
 
         // Create a button to pause/resume the timer
         actions: [
           IconButton(
             padding: const EdgeInsets.only(right: 20.0),
-            icon: const Icon(Icons.restart_alt, color: Colors.greenAccent, size: 30),
+            icon: const Icon(Icons.restart_alt,
+                color: Colors.greenAccent, size: 30),
             onPressed: () {
               setState(() {
                 _resetTimer();
@@ -218,13 +261,15 @@ class _TimerState extends State<MyTimer> {
           children: [
             Stack(
               children: [
-                Container (
+                Container(
                   width: 300,
                   height: 300,
                   child: CircularProgressIndicator(
                     color: Colors.greenAccent,
                     backgroundColor: Colors.black,
-                    value: _time.inSeconds / (_currMax * 60), // calculates the progress as a value between 0 and 1
+                    value: _time.inSeconds /
+                        (_currMax *
+                            60), // calculates the progress as a value between 0 and 1
                     strokeWidth: 2,
                   ),
                 ),
@@ -236,7 +281,7 @@ class _TimerState extends State<MyTimer> {
                     style: const TextStyle(
                       fontSize: 60,
                       color: Colors.greenAccent,
-                      fontFamily: 'Arial',
+                      fontFamily: 'Ubuntu',
                     ),
                   ),
                 ),
@@ -248,7 +293,7 @@ class _TimerState extends State<MyTimer> {
                     style: const TextStyle(
                       fontSize: 20,
                       color: Colors.greenAccent,
-                      fontFamily: 'Arial',
+                      fontFamily: 'Ubuntu',
                     ),
                   ),
                 ),
@@ -276,6 +321,5 @@ class _TimerState extends State<MyTimer> {
             : const Icon(Icons.play_arrow, color: Colors.greenAccent),
       ),
     );
-
   }
 }

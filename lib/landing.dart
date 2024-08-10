@@ -1,30 +1,29 @@
-// Home screen that displays the logo and a button to start the session
-
 import 'package:flutter/material.dart';
-
 import 'homepage.dart';
 
 class LandingPage extends StatelessWidget {
-  static const _textStyle = TextStyle(fontFamily: 'Arial');
+  static const _textStyle = TextStyle(fontFamily: 'Ubuntu');
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: Colors.grey,
       body: Column(
         children: [
-          // The main content of the page
           Expanded(
             child: Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const AnimatedOpacity(
+                  AnimatedOpacity(
                     duration: Duration(milliseconds: 500),
                     opacity: 1,
                     child: Text(
-                      'Welcome to Session',
-                      style: TextStyle(fontSize: 32, color: Colors.white, fontFamily: 'Arial'),
+                      'Fokus kuyy!',
+                      style: TextStyle(
+                          fontSize: 32,
+                          color: Colors.orange[900],
+                          fontFamily: 'Ubuntu'),
                     ),
                   ),
                   SizedBox(height: 16),
@@ -36,7 +35,8 @@ class LandingPage extends StatelessWidget {
                         context,
                         PageRouteBuilder(
                           transitionDuration: Duration(seconds: 1),
-                          pageBuilder: (context, animation, secondaryAnimation) {
+                          pageBuilder:
+                              (context, animation, secondaryAnimation) {
                             return FadeTransition(
                               opacity: animation,
                               child: HomePage(),
@@ -44,9 +44,9 @@ class LandingPage extends StatelessWidget {
                           },
                         ),
                       ),
-                      child: const Text(
-                        'start',
-                        style: TextStyle(color: Colors.greenAccent),
+                      child: Text(
+                        'Mulai',
+                        style: TextStyle(color: Colors.blue[900]),
                       ),
                     ),
                   ),
@@ -54,13 +54,15 @@ class LandingPage extends StatelessWidget {
               ),
             ),
           ),
-          // The footer with the "Made with love in YYC" text
           Container(
             height: 90,
             alignment: Alignment.center,
-            child: const Text(
-              'Built in YYC by Jash Dubal',
-              style: TextStyle(fontSize: 12, color: Colors.white24, fontFamily: 'Arial'),
+            child: Text(
+              'Edit by some people in Esgul.',
+              style: TextStyle(
+                  fontSize: 12,
+                  color: Colors.orange[900],
+                  fontFamily: 'Ubuntu'),
             ),
           ),
         ],

@@ -1,8 +1,8 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:hp/pages/data.dart';
-import 'package:hp/pages/habit.dart';
-import 'package:hp/pages/settings.dart';
+import 'package:pomodoro/pages/data.dart';
+import 'package:pomodoro/pages/habit.dart';
+import 'package:pomodoro/pages/settings.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -21,9 +21,9 @@ class _HomePageState extends State<HomePage> {
       bottomNavigationBar: CurvedNavigationBar(
         height: 75,
         animationCurve: Curves.easeInOut,
-        backgroundColor: Colors.black,
-        buttonBackgroundColor: Colors.greenAccent,
-        color: Colors.greenAccent,
+        backgroundColor: Colors.white,
+        buttonBackgroundColor: Colors.blueAccent,
+        color: Colors.blue,
         animationDuration: const Duration(milliseconds: 350),
         onTap: (selectedIndex) {
           setState(() {
@@ -32,9 +32,9 @@ class _HomePageState extends State<HomePage> {
         },
         index: 1,
         items: const [
-          Icon(Icons.timelapse_rounded, size: 20, color: Colors.black),
-          Icon(Icons.fitbit_rounded, size: 20, color: Colors.black),
-          Icon(Icons.history_rounded, size: 20, color: Colors.black),
+          Icon(Icons.timelapse_rounded, size: 20, color: Colors.orangeAccent),
+          Icon(Icons.fitbit_rounded, size: 20, color: Colors.orangeAccent),
+          Icon(Icons.history_rounded, size: 20, color: Colors.orangeAccent),
         ],
       ),
       body: Container(
